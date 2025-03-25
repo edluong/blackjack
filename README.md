@@ -50,3 +50,6 @@ then install typescript and ts-node as dev dependencies
 ```
 tsc --init
 ```
+
+# Configuring for ES Modules
+These are ECMAscript modules and new development should follow this pattern
