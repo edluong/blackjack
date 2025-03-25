@@ -1,0 +1,28 @@
+{
+  "name": "blackjack",
+  "version": "1.0.0",
+  "description": "Learning Typescript By Coding - Blackjack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edluong/blackjack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edluong/blackjack/issues"
+  },
+  "homepage": "https://github.com/edluong/blackjack#readme",
+  "dependencies": {
+    "@types/express": "^5.0.1",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
