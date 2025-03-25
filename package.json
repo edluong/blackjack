@@ -4,7 +4,10 @@
   "description": "Learning Typescript By Coding - Blackjack",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/backend/app.js",
+    "dev": "node src/backend/app.ts"
   },
   "repository": {
     "type": "git",

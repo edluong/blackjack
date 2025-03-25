@@ -4,9 +4,13 @@ Learning Typescript By Coding - Blackjack
 # Compile Code
 Type `tsc` and the file name
 ```
-tsc <file_name>.ts
+tsc <file name>.ts
 ```
-This will then generate a javascript file
+This will then generate a javascript file  
+For all files type
+```
+npm run build
+```
 
 # Blackjack - Part 1
 1. create express endpoint to show randomly picked two cards onto the browser
