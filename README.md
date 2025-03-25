@@ -45,3 +45,8 @@ then install Typescript type definition for express
 `npm install @types/express`
 then install typescript and ts-node as dev dependencies
 `npm install typescript ts-node --save-dev`
+
+# Create tsc config file
+```
+tsc --init
+```
