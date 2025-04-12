@@ -20,13 +20,9 @@
     "url": "https://github.com/edluong/blackjack/issues"
   },
   "homepage": "https://github.com/edluong/blackjack#readme",
-  "dependencies": {
-    "@types/express": "^5.0.1",
-    "express": "^4.21.2"
-  },
   "devDependencies": {
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   },
-  "type":"module"
+  "type": "module"
 }
