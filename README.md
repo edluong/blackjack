@@ -16,6 +16,9 @@ npm run build
 1. create express endpoint to show randomly picked two cards onto the browser
 2. import open source playing cards
 
+# Endpoints
+1. http://localhost:3000/game - Says Hello World!
+
 # Basic Structure For Backend and Frontend
 ```
 blackjack/
