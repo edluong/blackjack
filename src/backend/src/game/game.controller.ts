@@ -3,6 +3,7 @@ import { GameService } from './game.service';
 
 @Controller('game')
 export class GameController {
+  // eslint-disable-next-line prettier/prettier
   constructor(private readonly gameService: GameService) { }
 
   @Get()
