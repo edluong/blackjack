@@ -1,5 +1,17 @@
 import { Injectable } from '@nestjs/common';
 
+interface Card {
+  rank: number | null;
+  suit: string | null;
+}
+
+enum CardSuit {
+  Hearts = `hearts`,
+  Diamonds = `diamonds`,
+  Clubs = `clubs`,
+  Spades = `spades`,
+}
+
 @Injectable()
 export class GameService {
   getHello(): string {
@@ -7,18 +19,17 @@ export class GameService {
   }
   startGame(): string {
     // load a deck of cards
-    const deck: object[] = [];
-    const suits = ['hearts', 'diamonds', 'clovers', 'spades'];
+    const deck: Card[] = [];
     for (let i = 1; i <= 13; i++) {
-      suits.forEach((suit) => {
-        const card: { [key: string]: number | null | string } = {
+      for (const suit in CardSuit) {
+        const card: Card = {
           rank: null,
           suit: null,
         };
         card.rank = i;
         card.suit = suit;
         deck.push(card);
-      });
+      }
     }
     console.log(deck);
     return deck.length.toString();
