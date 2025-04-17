@@ -12,6 +12,11 @@ enum CardSuit {
   Spades = `spades`,
 }
 
+interface GameState {
+  playerHand: Card[];
+  dealerHand: Card[];
+}
+
 @Injectable()
 export class GameService {
   getHello(): string {
