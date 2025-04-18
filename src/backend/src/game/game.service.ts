@@ -47,11 +47,25 @@ export class GameService {
     }
     deck = this.shuffleDeck(deck);
     console.log(deck);
-    const card = deck.pop();
-    // have to check if a card exist first
-    if (card) {
-      playerHand.push(card);
+
+    // pass out 4 cards initially
+    const initialCardsPassedOutPerHand = 2;
+    for (
+      let numofCards = 1;
+      numofCards <= initialCardsPassedOutPerHand;
+      numofCards++
+    ) {
+      const cardForPlayer = deck.pop();
+      const cardForDealer = deck.pop();
+      // have to check if a card exist first
+      if (cardForPlayer) {
+        playerHand.push(cardForPlayer);
+      }
+      if (cardForDealer) {
+        dealerHand.push(cardForDealer);
+      }
     }
+    console.log(deck.length);
     return {
       playerHand: playerHand,
       dealerHand: dealerHand,
