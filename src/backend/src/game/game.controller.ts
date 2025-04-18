@@ -1,5 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { GameService } from './game.service';
+import { GameStateResponse } from 'src/types/card.d';
 
 @Controller('game')
 export class GameController {
@@ -11,7 +12,7 @@ export class GameController {
     return this.gameService.getHello();
   }
   @Get('start')
-  startGame(): string {
+  startGame(): GameStateResponse {
     return this.gameService.startGame();
   }
 }

@@ -1,9 +1,5 @@
 import { Injectable } from '@nestjs/common';
-
-interface Card {
-  rank: number | null;
-  suit: string | null;
-}
+import { Card, GameStateResponse } from 'src/types/card.d';
 
 enum CardSuit {
   Hearts = `hearts`,
@@ -12,19 +8,32 @@ enum CardSuit {
   Spades = `spades`,
 }
 
-interface GameState {
-  playerHand: Card[];
-  dealerHand: Card[];
-}
-
 @Injectable()
 export class GameService {
   getHello(): string {
     return 'Hello World!';
   }
-  startGame(): string {
+  shuffleDeck(deck: Card[]): Card[] {
+    // Fisher-Yates Algorithm
+    // get a random number between 0 and 1 (1 not inclusive)
+    // have the random number multiply with the index + 1 (the +1 is capturing the i since its not inclusive)
+    // since we are moving right to left, we will swap indexes randomly as we move left
+    for (let currentIndex = deck.length - 1; currentIndex > 0; currentIndex--) {
+      const swapIndex = Math.floor(Math.random() * (currentIndex + 1));
+      // swap the index
+      [deck[currentIndex], deck[swapIndex]] = [
+        deck[swapIndex],
+        deck[currentIndex],
+      ];
+    }
+    return deck;
+  }
+
+  startGame(): GameStateResponse {
     // load a deck of cards
-    const deck: Card[] = [];
+    let deck: Card[] = [];
+    const playerHand: Card[] = [];
+    const dealerHand: Card[] = [];
     for (let i = 1; i <= 13; i++) {
       for (const suit in CardSuit) {
         const card: Card = {
@@ -36,7 +45,11 @@ export class GameService {
         deck.push(card);
       }
     }
+    deck = this.shuffleDeck(deck);
     console.log(deck);
-    return deck.length.toString();
+    return {
+      playerHand: playerHand,
+      dealerHand: dealerHand,
+    };
   }
 }
