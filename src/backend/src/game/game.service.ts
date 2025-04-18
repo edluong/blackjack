@@ -47,6 +47,11 @@ export class GameService {
     }
     deck = this.shuffleDeck(deck);
     console.log(deck);
+    const card = deck.pop();
+    // have to check if a card exist first
+    if (card) {
+      playerHand.push(card);
+    }
     return {
       playerHand: playerHand,
       dealerHand: dealerHand,
