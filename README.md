@@ -13,8 +13,13 @@ npm run build
 ```
 
 # Blackjack - Part 1
-1. create express endpoint to show randomly picked two cards onto the browser
-2. import open source playing cards
+1. create the initial endpoints to start up a game of blackjack
+these will be:
+- /game/start = set up for the game
+- /game/hit = gives the player another card
+- /game/stand = player ends their turn
+- /game/status = retrieves the current status of the game
+- /game/reset = resets the game
 
 # Endpoints
 1. http://localhost:3000/game/start 
