@@ -21,8 +21,12 @@
   },
   "homepage": "https://github.com/edluong/blackjack#readme",
   "devDependencies": {
+    "@types/express-session": "^1.18.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "express-session": "^1.18.1"
+  }
 }
