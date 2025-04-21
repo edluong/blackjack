@@ -103,3 +103,19 @@ tsc --init
 
 # Configuring for ES Modules
 These are ECMAscript modules and new development should follow this pattern
+
+# Generating the Session Secret
+1. enter the node repl. type the following:
+```
+node
+```
+2. run the following code in the REPL
+```
+const crypto = require('crypto');
+const secretKey = crypto.randomBytes(32).toString('hex');
+console.log(secretKey);
+```
+3. create a `.env` file and paste the secretKey as the new value
+```
+SESSION_SECRET=<paste secretKey here>
+```
