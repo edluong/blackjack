@@ -28,12 +28,10 @@ export class GameService {
     }
     return deck;
   }
-
-  startGame(): GameStateResponse {
+  loadDeck(): Card[] {
     // load a deck of cards
-    let deck: Card[] = [];
-    const playerHand: Card[] = [];
-    const dealerHand: Card[] = [];
+    const deck: Card[] = [];
+
     for (let i = 1; i <= 13; i++) {
       for (const suit in CardSuit) {
         const card: Card = {
@@ -45,6 +43,13 @@ export class GameService {
         deck.push(card);
       }
     }
+    return deck;
+  }
+
+  startGame(): GameStateResponse {
+    const playerHand: Card[] = [];
+    const dealerHand: Card[] = [];
+    let deck = this.loadDeck();
     deck = this.shuffleDeck(deck);
     console.log(deck);
 
