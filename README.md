@@ -17,7 +17,11 @@ npm run build
 2. import open source playing cards
 
 # Endpoints
-1. http://localhost:3000/game - Says Hello World!
+1. http://localhost:3000/game/start 
+Does the following:
+- loads a deck of cards
+- shuffles the deck of cards
+- deal out the initial cards to the player and dealer
 
 # Basic Structure For Backend and Frontend
 ```
