@@ -46,12 +46,11 @@ export class GameService {
     return deck;
   }
 
-  startGame(): GameStateResponse {
+  startGame(session: Record<string, any>, gameID: string): GameStateResponse {
     const playerHand: Card[] = [];
     const dealerHand: Card[] = [];
     let deck = this.loadDeck();
     deck = this.shuffleDeck(deck);
-    console.log(deck);
 
     // pass out 4 cards initially
     const initialCardsPassedOutPerHand = 2;
@@ -70,7 +69,16 @@ export class GameService {
         dealerHand.push(cardForDealer);
       }
     }
-    console.log(deck.length);
+
+    // save game state
+    session[gameID] = {
+      playerHand: playerHand,
+      dealerHand: dealerHand,
+      deckState: deck,
+    };
+
+    console.log(session);
+
     return {
       playerHand: playerHand,
       dealerHand: dealerHand,
