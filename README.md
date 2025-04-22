@@ -13,13 +13,18 @@ npm run build
 ```
 
 # Blackjack - Part 1
-1. create the initial endpoints to start up a game of blackjack
+1. create the initial endpoints to start up a game of blackjack until end of round
 these will be:
-- /game/start = set up for the game
-- /game/hit = gives the player another card
-- /game/stand = player ends their turn
-- /game/status = retrieves the current status of the game
-- /game/reset = resets the game
+- `/game/start`
+    does the following:
+    1. loads a new deck
+    2. shuffles the deck
+    3. passes out two cards to player and dealer
+    4. saves the game state (player hand, dealer hand, deck state) to session
+- `/game/hit` = gives the player another card
+- `/game/stand` = player ends their turn
+- `/game/status` = retrieves the current status of the game
+- `/game/reset` = resets the game
 
 # Endpoints
 1. http://localhost:3000/game/start 
