@@ -80,6 +80,7 @@ export class GameService {
     console.log(session);
 
     return {
+      gameId: gameID,
       playerHand: playerHand,
       dealerHand: dealerHand,
     };

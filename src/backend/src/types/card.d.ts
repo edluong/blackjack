@@ -4,6 +4,7 @@ export interface Card {
 }
 
 export interface GameStateResponse {
+  gameId: string;
   playerHand: Card[];
   dealerHand: Card[];
 }
