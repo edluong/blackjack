@@ -2,12 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { Card, GameStateResponse } from 'src/types/card.d';
 import { CardSuit } from 'src/constants/constants';
 
-// enum CardSuit {
-//   Hearts = `hearts`,
-//   Diamonds = `diamonds`,
-//   Clubs = `clubs`,
-//   Spades = `spades`,
-// }
 @Injectable()
 export class GameService {
   getHello(): string {
