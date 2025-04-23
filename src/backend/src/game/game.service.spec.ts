@@ -15,4 +15,11 @@ describe('GameService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  describe('loadDeck', () => {
+    it('loaded deck has 52 cards', () => {
+      const deck = service.loadDeck();
+      expect(deck.length).toBe(52);
+    });
+  });
 });

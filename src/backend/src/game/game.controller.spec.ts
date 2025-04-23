@@ -4,6 +4,7 @@ import { GameService } from './game.service';
 
 describe('GameController', () => {
   let controller: GameController;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let service: GameService;
 
   beforeEach(async () => {
