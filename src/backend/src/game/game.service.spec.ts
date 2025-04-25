@@ -72,4 +72,14 @@ describe('GameService', () => {
       }
     });
   });
+
+  describe('startGame', () => {
+    it('should have two cards for dealer and player', () => {
+      const someId = 'someid';
+      const response = service.startGame({}, someId);
+      expect(response.dealerHand.length).toBe(2);
+      expect(response.playerHand.length).toBe(2);
+      expect(response.gameId).toBe(someId);
+    });
+  });
 });
