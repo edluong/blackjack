@@ -18,17 +18,17 @@ describe('GameService', () => {
   });
 
   describe('loadDeck', () => {
-    it('loaded deck has 52 cards', () => {
+    it('should have 52 cards', () => {
       const deck = service.loadDeck();
       expect(deck.length).toBe(52);
     });
-    it('loaded deck only has 4 different suits', () => {
+    it('should have 4 different suits', () => {
       const deck = service.loadDeck();
       deck.forEach((card) => {
         expect(Object.keys(CardSuit)).toContain(card.suit);
       });
     });
-    it('loaded deck only has 1 to 13 rank', () => {
+    it('should only contains 1 to 13 rank', () => {
       const deck = service.loadDeck();
       const rankSet: Set<number> = new Set();
       deck.forEach((card) => {
@@ -38,6 +38,37 @@ describe('GameService', () => {
       });
       for (let i = 1; i <= 13; i++) {
         expect(rankSet.has(i)).toBe(true);
+      }
+    });
+  });
+
+  describe('shuffleDeck', () => {
+    it('should have 52 cards after shuffling', () => {
+      const deck = service.loadDeck();
+      const shuffled = service.shuffleDeck(deck);
+      expect(shuffled.length).toBe(52);
+    });
+    it('should be in a different order when shuffled', () => {
+      // create a unshuffled deck
+      // create a shuffled deck
+      // if they are equal, shuffle again and try again for 10 times
+      // shuffling 10 times to make sure the test is not flakey
+      // return true if they should not be equal
+      const unshuffleDeck = service.loadDeck();
+      const secondDeck = service.loadDeck();
+      const shuffleDeck = service.shuffleDeck(secondDeck);
+      let n = 10;
+      while (n > 0) {
+        if (unshuffleDeck != shuffleDeck) {
+          expect(
+            // this turns the two deck variables to strings for easy check
+            // perform strict inequality, strongly recommended by default
+            JSON.stringify(unshuffleDeck) !== JSON.stringify(shuffleDeck),
+          ).toBe(true);
+        } else {
+          continue;
+        }
+        n -= 1;
       }
     });
   });

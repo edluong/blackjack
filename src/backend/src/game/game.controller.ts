@@ -8,10 +8,6 @@ export class GameController {
   // eslint-disable-next-line prettier/prettier
   constructor(private readonly gameService: GameService) { }
 
-  @Get()
-  getHello(): string {
-    return this.gameService.getHello();
-  }
   @Get('start')
   startGame(@Session() session: Record<string, any>): GameStateResponse {
     const gameID = generateGameID();

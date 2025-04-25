@@ -4,9 +4,6 @@ import { CardSuit } from 'src/constants/constants';
 
 @Injectable()
 export class GameService {
-  getHello(): string {
-    return 'Hello World!';
-  }
   shuffleDeck(deck: Card[]): Card[] {
     // Fisher-Yates Algorithm
     // get a random number between 0 and 1 (1 not inclusive)
