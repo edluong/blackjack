@@ -13,7 +13,8 @@ function getRandomIntInclusive(min: number, max: number): number {
 }
 
 export function generateGameID(): string {
-  // randomly pick a number between 48 to 122; 8 times
+  // randomly pick a number between 48 to 122, 8 times
+  // add the value to return string
   let result = '';
   for (let i = 0; i < gameIDLength; i++) {
     const randomUnicodeNumber = getRandomIntInclusive(minValue, maxValue);
