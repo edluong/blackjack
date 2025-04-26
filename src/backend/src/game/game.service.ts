@@ -68,8 +68,6 @@ export class GameService {
       deckState: deck,
     };
 
-    console.log(session);
-
     return {
       gameId: gameID,
       playerHand: playerHand,
