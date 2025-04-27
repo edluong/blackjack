@@ -9,7 +9,8 @@ export enum CardSuit {
 }
 
 export enum GameState {
-  Busted = 'busted',
+  Busted = 'busted', // player went over 21, game over
+  Active = 'active', // player did not bust out
   Win = 'win',
   Lose = 'lose',
   Push = 'push',
