@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Card, GameStartResponse } from 'src/types/card.d';
-import { CardSuit } from 'src/constants/constants';
+import { Card, GameStartResponse, GameStateResponse } from 'src/types/card.d';
+import { CardSuit, GameState } from 'src/constants/constants';
 
 @Injectable()
 export class GameService {
@@ -36,6 +36,60 @@ export class GameService {
       });
     }
     return deck;
+  }
+
+  playerHit(session: Record<string, any>, gameID: string): GameStateResponse {
+    const emptyResponse: GameStateResponse = {
+      gameId: gameID,
+      playerHand: [],
+      dealerHand: [],
+      playerScore: 0,
+      dealerScore: 0,
+      gameState: GameState.Active,
+      message: 'placeholder',
+    };
+
+    try {
+      if (session[gameID]) {
+        const sessionData = session[gameID] as GameStartResponse;
+        if (sessionData && typeof sessionData === 'object') {
+          const sessionPlayerHand = sessionData.playerHand;
+          const sessionDealerHand = sessionData.dealerHand;
+          let playerRankSum: number = 0;
+          for (const card of sessionPlayerHand) {
+            if (card.rank) {
+              playerRankSum += card.rank;
+            }
+          }
+
+          let dealerRankSum: number = 0;
+          for (const card of sessionDealerHand) {
+            if (card.rank) {
+              dealerRankSum += card.rank;
+            }
+          }
+
+          return {
+            gameId: gameID,
+            playerHand: sessionPlayerHand || [],
+            dealerHand: sessionDealerHand || [],
+            playerScore: playerRankSum || 0,
+            dealerScore: dealerRankSum || 0,
+            gameState: GameState.Active,
+            message: 'placeholder',
+          };
+        } else {
+          emptyResponse.gameState = GameState.Error;
+          emptyResponse.message = 'Invalid Session data.';
+          return emptyResponse;
+        }
+      } else {
+        throw new Error(`gameID: ${gameID} session data not found!`);
+      }
+    } catch (error) {
+      console.error(`cant find game data! error on gameid: ${gameID}`, error);
+      return emptyResponse;
+    }
   }
 
   startGame(session: Record<string, any>, gameID: string): GameStartResponse {

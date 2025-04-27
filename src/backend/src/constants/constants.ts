@@ -11,6 +11,7 @@ export enum CardSuit {
 export enum GameState {
   Busted = 'busted', // player went over 21, game over
   Active = 'active', // player did not bust out
+  Error = 'error', // something went wrong
   Win = 'win',
   Lose = 'lose',
   Push = 'push',
