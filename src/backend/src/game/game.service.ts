@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Card, GameStateResponse } from 'src/types/card.d';
+import { Card, GameStartResponse } from 'src/types/card.d';
 import { CardSuit } from 'src/constants/constants';
 
 @Injectable()
@@ -38,7 +38,7 @@ export class GameService {
     return deck;
   }
 
-  startGame(session: Record<string, any>, gameID: string): GameStateResponse {
+  startGame(session: Record<string, any>, gameID: string): GameStartResponse {
     const playerHand: Card[] = [];
     const dealerHand: Card[] = [];
     let deck = this.loadDeck();

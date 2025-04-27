@@ -4,7 +4,7 @@ export interface Card {
   suit: CardSuit | null;
 }
 
-export interface GameStateResponse {
+export interface GameStartResponse {
   gameId: string;
   playerHand: Card[];
   dealerHand: Card[];
