@@ -25,7 +25,7 @@ describe('GameService', () => {
     it('should have 4 different suits', () => {
       const deck = service.loadDeck();
       deck.forEach((card) => {
-        expect(Object.keys(CardSuit)).toContain(card.suit);
+        expect(Object.values(CardSuit)).toContain(card.suit);
       });
     });
     it('should only contains 1 to 13 rank', () => {

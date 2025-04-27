@@ -2,6 +2,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GameController } from './game.controller';
 import { GameService } from './game.service';
+import { CardSuit } from 'src/constants/constants';
 
 const mockGameService = () => ({
   startGame: jest.fn(),
@@ -36,21 +37,21 @@ describe('GameController', () => {
       'playerHand': [
         {
           'rank': 7,
-          'suit': 'Spades'
+          'suit': CardSuit.Spades
         },
         {
           'rank': 6,
-          'suit': 'Diamonds'
+          'suit': CardSuit.Diamonds
         },
       ],
       'dealerHand': [
         {
           'rank': 3,
-          'suit': 'Hearts'
+          'suit': CardSuit.Hearts
         },
         {
           'rank': 5,
-          'suit': 'Spades',
+          'suit': CardSuit.Spades,
         },
       ],
     };

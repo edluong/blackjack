@@ -24,7 +24,8 @@ export class GameService {
     const deck: Card[] = [];
 
     for (let i = 1; i <= 13; i++) {
-      for (const suit in CardSuit) {
+      const cardSuitValues = Object.values(CardSuit);
+      cardSuitValues.forEach((suit) => {
         const card: Card = {
           rank: null,
           suit: null,
@@ -32,7 +33,7 @@ export class GameService {
         card.rank = i;
         card.suit = suit;
         deck.push(card);
-      }
+      });
     }
     return deck;
   }
