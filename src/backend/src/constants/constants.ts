@@ -7,3 +7,10 @@ export enum CardSuit {
   Clubs = 'clubs',
   Spades = 'spades',
 }
+
+export enum GameState {
+  Busted = 'busted',
+  Win = 'win',
+  Lose = 'lose',
+  Push = 'push',
+}
