@@ -15,7 +15,7 @@ export interface GameStateResponse {
   gameId: string;
   playerHand: Card[];
   dealerHand: Card[];
-  playerScore: number;
+  playerScore: string;
   dealerScore: number;
   gameState: GameState;
   message: string;

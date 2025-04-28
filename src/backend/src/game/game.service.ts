@@ -38,12 +38,48 @@ export class GameService {
     return deck;
   }
 
+  calculatePlayerScore(hand: Card[]): [string, GameState, string] {
+    let sumWithEleven = 0;
+    let hasAce = false;
+    const gameState: GameState = GameState.Active;
+    const continueMessage: string = 'continue?';
+    for (const card of hand) {
+      let rankValue = card.rank;
+      if (rankValue && rankValue >= 11) {
+        rankValue = 10; // Jack, Queen, King are 10
+      } else if (rankValue === 1) {
+        hasAce = true;
+        sumWithEleven += 11; // Initially count Ace as 11
+      } else {
+        if (rankValue) {
+          sumWithEleven += rankValue;
+        }
+      }
+    }
+    if (hasAce && sumWithEleven > 21) {
+      const sumWithOne = sumWithEleven - 10;
+      return [`${sumWithOne}`, gameState, continueMessage];
+    } else if (hasAce) {
+      const sumWithOne = sumWithEleven - 10;
+      if (sumWithOne !== sumWithEleven) {
+        return [`${sumWithOne}/${sumWithEleven}`, gameState, continueMessage];
+      } else {
+        return [`${sumWithEleven}`, gameState, continueMessage];
+      }
+    } else {
+      if (sumWithEleven > 21) {
+        return [`${sumWithEleven}`, GameState.Busted, 'Busted. Game over.'];
+      }
+      return [`${sumWithEleven}`, gameState, continueMessage];
+    }
+  }
+
   playerHit(session: Record<string, any>, gameID: string): GameStateResponse {
     const emptyResponse: GameStateResponse = {
       gameId: gameID,
       playerHand: [],
       dealerHand: [],
-      playerScore: 0,
+      playerScore: '0',
       dealerScore: 0,
       gameState: GameState.Active,
       message: 'placeholder',
@@ -55,17 +91,26 @@ export class GameService {
         if (sessionData && typeof sessionData === 'object') {
           const sessionPlayerHand = sessionData.playerHand;
           const sessionDealerHand = sessionData.dealerHand;
-          let playerRankSum: number = 0;
-          for (const card of sessionPlayerHand) {
-            if (card.rank) {
-              playerRankSum += card.rank;
-            }
-          }
+          let gameStatus: GameState = GameState.Active;
+
+          const [playerScore, playerGameState, playerMessage] =
+            this.calculatePlayerScore(sessionPlayerHand);
+          gameStatus = playerGameState;
 
           let dealerRankSum: number = 0;
           for (const card of sessionDealerHand) {
-            if (card.rank) {
-              dealerRankSum += card.rank;
+            let rankValue = card.rank;
+            if (rankValue && rankValue >= 11) {
+              rankValue = 10;
+            } else if (rankValue === 1) {
+              dealerRankSum += 11; // Dealer usually counts Ace as 11 initially
+              if (dealerRankSum > 21) {
+                dealerRankSum -= 10; // Adjust to 1 if busting
+              }
+            } else {
+              if (rankValue) {
+                dealerRankSum += rankValue;
+              }
             }
           }
 
@@ -73,10 +118,10 @@ export class GameService {
             gameId: gameID,
             playerHand: sessionPlayerHand || [],
             dealerHand: sessionDealerHand || [],
-            playerScore: playerRankSum || 0,
+            playerScore: playerScore || '0',
             dealerScore: dealerRankSum || 0,
-            gameState: GameState.Active,
-            message: 'placeholder',
+            gameState: gameStatus,
+            message: playerMessage,
           };
         } else {
           emptyResponse.gameState = GameState.Error;
